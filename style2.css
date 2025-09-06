@@ -1,0 +1,231 @@
+/* style.css */
+
+:root {
+    --primary-bg: #eadb2a;        /* Light grey background */
+    --text-color: #27c952;        /* Dark grey for general text */
+    --accent-color: #27c952;      /* A vibrant blue for buttons/highlights */
+    --secondary-text: #4947a5;    /* Medium grey for secondary text */
+    --border-color: #E0E0E0;      /* Light grey for borders */
+    --card-bg: #ffffff;           /* White for card backgrounds */
+    --modal-bg: #eadb2a; /* Dark overlay for modal */
+    --modal-close-color: #f1f1f1; /* White for close button */
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--card-bg);
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+header h1 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 2.5em; /* Larger heading */
+}
+
+.subheading {
+    font-size: 1.3em; /* Subheading style */
+    color: var(--secondary-text);
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-weight: 300; /* Lighter weight for subheading */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--secondary-text);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+.shoe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.shoe-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    /* Adjusted padding to fit only the image */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    cursor: pointer; /* Indicate that the item is clickable */
+    display: flex; /* Use flexbox to easily center image */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    min-height: 250px; /* Give a consistent height to the card itself */
+}
+
+.shoe-item:hover {
+    transform: translateY(-5px); /* Subtle lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.shoe-item img {
+    max-width: 100%;
+    max-height: 220px; /* Allow image to fill most of the card height */
+    object-fit: contain; /* Ensures entire image is visible without cropping */
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    /* Removed margin-bottom as there's no text below it */
+}
+
+.shoe-item:hover img {
+    transform: scale(1.03); /* Subtle zoom on hover */
+}
+
+/* Removed styles for h2, p, .price, button inside .shoe-item */
+/* .shoe-item h2 { ... } */
+/* .shoe-item p { ... } */
+/* .shoe-item .price { ... } */
+/* .shoe-item button { ... } */
+
+
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--card-bg);
+    color: var(--secondary-text);
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+footer .contact-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Spacing between links */
+    flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+}
+
+footer .contact-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+footer .contact-link:hover {
+    color: #0056b3; /* Darker accent on hover */
+}
+
+/* --- Image Modal Styles --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: var(--modal-bg); /* Dark overlay */
+
+    /* Use flexbox to center content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Start hidden for fade-in */
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Allows clicks to pass through when hidden */
+}
+
+.modal.active {
+    opacity: 1; /* Show when active */
+    pointer-events: auto; /* Enable clicks when active */
+}
+
+.modal-content {
+    display: block;
+    max-width: 90%; /* Max width of image */
+    max-height: 90%; /* Max height of image */
+    object-fit: contain; /* Ensure image fits within bounds */
+    transform: scale(0.8); /* Start smaller for zoom effect */
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1); /* Zoom to actual size when active */
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: var(--modal-close-color);
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    line-height: 1; /* Adjust line height for better centering of X */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .subheading {
+        font-size: 1.1em;
+    }
+    .shoe-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 20px 10px;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    footer .contact-links {
+        flex-direction: column; /* Stack links vertically on small screens */
+        gap: 10px;
+    }
+    .close-button {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
+    .shoe-item {
+        min-height: 220px; /* Adjust card height for smaller screens */
+    }
+    .shoe-item img {
+        max-height: 180px; /* Adjust image height for smaller screens */
+    }
+}
